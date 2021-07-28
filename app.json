@@ -1,0 +1,8 @@
+{
+  "name": "Supibot Reminder GET API",
+  "description": "Send GET request for creating a supibot reminder instead of POST.",
+  "repository": "https://github.com/GreenComfyTea/Supibot-Reminder-GET-API",
+  "logo": "https://supinic.com/public/img/HACKERMAN.png",
+  "keywords": ["node", "express", "heroku", "supibot", "supinic", "api"],
+  "image": "heroku/nodejs"
+}
