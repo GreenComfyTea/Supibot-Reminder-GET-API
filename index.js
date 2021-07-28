@@ -28,7 +28,7 @@ sendPOST =  async(request, response) => {
 	if(userID_ === undefined && username_ === undefined && text_ === undefined && schedule_ === undefined) {
 		const errorJson = { statusCode: 418,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&userID=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
 		console.log(errorJson);
-		response.status(401).json(errorJson);
+		response.status(418).json(errorJson);
 		response.send();
 		return;
 	}
