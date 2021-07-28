@@ -55,6 +55,11 @@ sendPOST =  async(request, response) => {
 	
 	if(username_ === 'me') username_ = sendername_;
 	
+	if(/^\d+$/.test(username_)) {
+		userID_ = username_;
+		username_ = undefined;
+	}
+	
 	var requestUrl = 'https://supinic.com/api/bot/reminder/?'
 	if(userID_ !== undefined) requestUrl += 'userID=' + userID_;
 	if(username_ !== undefined) requestUrl += 'username=' + username_;
