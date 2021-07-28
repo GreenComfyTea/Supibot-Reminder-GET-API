@@ -23,12 +23,10 @@ sendPOST =  async(request, response) => {
 	if(schedule_ === 'NO_SCHEDULE') schedule_ = undefined;
 	if(private_ === 'NO_PRIVATE') private_ = 0;
 
-
-	// Supibot's 400 code replaced with 418
 	if(userID_ === undefined && username_ === undefined && text_ === undefined && schedule_ === undefined) {
-		const errorJson = { statusCode: 418,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&userID=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
+		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&userID=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
 		console.log(errorJson);
-		response.status(418).json(errorJson);
+		response.status(400).json(errorJson);
 		response.send();
 		return;
 	}
@@ -41,14 +39,14 @@ sendPOST =  async(request, response) => {
 		return;
 	}
 	if(userID_ !== undefined && username_ !== undefined) {
-		const errorJson = { statusCode: 418,   error: { message:'Invalid Request. Both ID and name were used at the same time.' } };
+		const errorJson = { statusCode: 400,   error: { message:'Invalid Request. Both ID and name were used at the same time.' } };
 		console.log(errorJson);
 		response.status(400).json();
 		response.send();
 		return;
 	}
 	if(userID_ === undefined && username_ === undefined) {
-		const errorJson = { statusCode: 418,   error: { message:'Invalid Request. No user provided.' } };
+		const errorJson = { statusCode: 400,   error: { message:'Invalid Request. No user provided.' } };
 		console.log(errorJson);
 		response.status(400).json();
 		response.send();
