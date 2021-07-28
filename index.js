@@ -31,7 +31,7 @@ sendPOST =  async(request, response) => {
 		return;
 	}*/
 
-	// Supibot's 400 code replaced with 418 code
+	// Supibot's 400 code replaced with 499 code
 	if(auth_name_ === undefined || auth_key_ === undefined) {
 		const errorJson = { statusCode: 401,  error: { message:'Authorization Failed.' } }
 		console.log(errorJson);
@@ -40,16 +40,16 @@ sendPOST =  async(request, response) => {
 		return;
 	}
 	if(userID_ !== undefined && username_ !== undefined) {
-		const errorJson = { statusCode: 418,   error: { message:'Invalid Request. Both ID and name were used at the same time.' } };
+		const errorJson = { statusCode: 499,   error: { message:'Invalid Request. Both ID and name were used at the same time.' } };
 		console.log(errorJson);
-		response.status(418).json();
+		response.status(499).json();
 		response.send();
 		return;
 	}
 	if(userID_ === undefined && username_ === undefined) {
-		const errorJson = { statusCode: 418,   error: { message:'Invalid Request. No user provided.' } };
+		const errorJson = { statusCode: 499,   error: { message:'Invalid Request. No user provided.' } };
 		console.log(errorJson);
-		response.status(418).json();
+		response.status(499).json();
 		response.send();
 		return;
 	}
