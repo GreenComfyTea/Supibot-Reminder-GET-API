@@ -17,14 +17,14 @@ sendPOST =  async(request, response) => {
 	var schedule_ = request.query.schedule;
 	var private_ = request.query.private;
 	
-	if(userID_ === 'NO_USERNAME' || userID_ === ' ') userID_ = undefined;
+	if(userID_ === 'NO_USERID' || userID_ === ' ') userID_ = undefined;
 	if(username_ === 'NO_USERNAME' || username_ === ' ') username_ = undefined;
 	if(text_ === 'NO_USERNAME' || text_ === ' ') text_ = undefined;
 	if(schedule_ === 'NO_SCHEDULE' || schedule_ === ' ') schedule_ = undefined;
 	if(private_ === 'NO_SCHEDULE' || private_ === ' ') private_ = undefined;
 
 	if(Object.keys(request.query).length === 0) {
-		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
+		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&userID=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
 		console.log(errorJson);
 		response.status(401).json(errorJson);
 		response.send();
