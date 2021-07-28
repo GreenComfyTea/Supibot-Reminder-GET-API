@@ -11,14 +11,18 @@ sendPOST =  async(request, response) => {
 	const auth_key_ = request.query.auth_key;
 	
 	const sendername_ = request.query.sendername;
-	const userID_ = request.query.userID;
+	var userID_ = request.query.userID;
 	var username_ = request.query.username;
-	const text_ = request.query.text;
+	var text_ = request.query.text;
 	var schedule_ = request.query.schedule;
-	const private_ = request.query.private;
+	var private_ = request.query.private;
 	
-	if(schedule_ === 'NO_SCHEDULE') schedule_ = undefined;
-	
+	if(userID_ === 'NO_USERNAME' || userID_ === ' ') userID_ = undefined;
+	if(username_ === 'NO_USERNAME' || username_ === ' ') username_ = undefined;
+	if(text_ === 'NO_USERNAME' || text_ === ' ') text_ = undefined;
+	if(schedule_ === 'NO_SCHEDULE' || schedule_ === ' ') schedule_ = undefined;
+	if(private_ === 'NO_SCHEDULE' || private_ === ' ') private_ = undefined;
+
 	if(Object.keys(request.query).length === 0) {
 		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
 		console.log(errorJson);
