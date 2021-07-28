@@ -17,14 +17,16 @@ sendPOST =  async(request, response) => {
 	var schedule_ = request.query.schedule;
 	var private_ = request.query.private;
 	
-	if(userID_ === 'NO_USERID' || userID_trim() === '') userID_ = undefined;
-	if(username_ === 'NO_USERNAME' || username_trim() === '') username_ = undefined;
-	if(text_ === 'NO_USERNAME' || text_trim() === '') text_ = undefined;
-	if(schedule_ === 'NO_SCHEDULE' || schedule_trim() === '') schedule_ = undefined;
-	if(private_ === 'NO_SCHEDULE' || private_trim() === '') private_ = undefined;
+	if(userID_ === 'NO_USERID') userID_ = undefined;
+	if(username_ === 'NO_USERNAME') username_ = undefined;
+	if(text_ === 'NO_TEXT') text_ = undefined;
+	if(schedule_ === 'NO_SCHEDULE') schedule_ = undefined;
+	if(private_ === 'NO_PRIVATE') private_ = 0;
 
-	if(userID_ === undefined && username_ === undefined && text_ === undefined && schedule_ === undefined && private_ === undefined) {
-		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&userID=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
+
+	// Supibot's 400 code replaced with 418
+	if(userID_ === undefined && username_ === undefined && text_ === undefined && schedule_ === undefined) {
+		const errorJson = { statusCode: 418,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&userID=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
 		console.log(errorJson);
 		response.status(401).json(errorJson);
 		response.send();
@@ -39,14 +41,14 @@ sendPOST =  async(request, response) => {
 		return;
 	}
 	if(userID_ !== undefined && username_ !== undefined) {
-		const errorJson = { statusCode: 400,   error: { message:'Invalid Request. Both ID and name were used at the same time.' } };
+		const errorJson = { statusCode: 418,   error: { message:'Invalid Request. Both ID and name were used at the same time.' } };
 		console.log(errorJson);
 		response.status(400).json();
 		response.send();
 		return;
 	}
 	if(userID_ === undefined && username_ === undefined) {
-		const errorJson = { statusCode: 400,   error: { message:'Invalid Request. No user provided.' } };
+		const errorJson = { statusCode: 418,   error: { message:'Invalid Request. No user provided.' } };
 		console.log(errorJson);
 		response.status(400).json();
 		response.send();
