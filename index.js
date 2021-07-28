@@ -23,13 +23,13 @@ sendPOST =  async(request, response) => {
 	if(schedule_ === 'NO_SCHEDULE') schedule_ = undefined;
 	if(private_ === 'NO_PRIVATE') private_ = 0;
 
-	if(userID_ === undefined && username_ === undefined && text_ === undefined && schedule_ === undefined) {
+	/*if(userID_ === undefined && username_ === undefined && text_ === undefined && schedule_ === undefined) {
 		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&userID=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
 		console.log(errorJson);
 		response.status(400).json(errorJson);
 		response.send();
 		return;
-	}
+	}*/
 
 	if(auth_name_ === undefined || auth_key_ === undefined) {
 		const errorJson = { statusCode: 401,  error: { message:'Authorization Failed.' } }
