@@ -10,15 +10,15 @@ sendPOST =  async(request, response) => {
 	const auth_name_ = request.query.auth_name;
 	const auth_key_ = request.query.auth_key;
 	
+	const sendername_ = request.query.sendername;
 	const userID_ = request.query.userID;
 	const username_ = request.query.username;
 	const text_ = request.query.text;
 	const schedule_ = request.query.schedule;
 	const private_ = request.query.private;
-
 	
 	if(Object.keys(request.query).length === 0) {
-		const errorJson = { statusCode: 400,  error: 'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' }
+		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
 		console.log(errorJson);
 		response.status(401).json(errorJson);
 		response.send();
@@ -26,26 +26,28 @@ sendPOST =  async(request, response) => {
 	}
 
 	if(auth_name_ === undefined || auth_key_ === undefined) {
-		const errorJson = { statusCode: 401,  error: 'Authorization Failed.' }
+		const errorJson = { statusCode: 401,  error: { message:'Authorization Failed.' } }
 		console.log(errorJson);
 		response.status(401).json(errorJson);
 		response.send();
 		return;
 	}
 	if(userID_ !== undefined && username_ !== undefined) {
-		const errorJson = { statusCode: 400,   error: 'Invalid Request. Both ID and name were used at the same time.' };
+		const errorJson = { statusCode: 400,   error: { message:'Invalid Request. Both ID and name were used at the same time.' } };
 		console.log(errorJson);
 		response.status(400).json();
 		response.send();
 		return;
 	}
 	if(userID_ === undefined && username_ === undefined) {
-		const errorJson = { statusCode: 400,   error: 'Invalid Request. No user provided.' };
+		const errorJson = { statusCode: 400,   error: { message:'Invalid Request. No user provided.' } };
 		console.log(errorJson);
 		response.status(400).json();
 		response.send();
 		return;
 	}
+	
+	if(username_ === 'me') username_ = sendername_;
 	
 	var requestUrl = 'https://supinic.com/api/bot/reminder/?'
 	if(userID_ !== undefined) requestUrl += 'userID=' + userID_;
@@ -76,7 +78,7 @@ sendPOST =  async(request, response) => {
 		response.send();
 	}
 	catch (error) {
-		response.status(500).json({ error: error });
+		response.status(500).json({ error:  { message:error } });
 		console.log(error)
 	  }
 }
