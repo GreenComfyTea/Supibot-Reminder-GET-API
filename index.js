@@ -12,10 +12,12 @@ sendPOST =  async(request, response) => {
 	
 	const sendername_ = request.query.sendername;
 	const userID_ = request.query.userID;
-	const username_ = request.query.username;
+	var username_ = request.query.username;
 	const text_ = request.query.text;
-	const schedule_ = request.query.schedule;
+	var schedule_ = request.query.schedule;
 	const private_ = request.query.private;
+	
+	if(schedule_ === 'NO_SCHEDULE') schedule_ = undefined;
 	
 	if(Object.keys(request.query).length === 0) {
 		const errorJson = { statusCode: 400,  error: { message:'Usage: url/?auth_name=REPLACE&auth_key=REPLACE&username=REPLACE&text=REPLACE&schedule=REPLACE&private=REPLACE' } }
